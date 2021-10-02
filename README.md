@@ -6,7 +6,7 @@ Two different (linear) objective functions are demonstrated, one probabilistic a
 Zipf's frequency-rank distribution. The underlying language model is the frequency distribution
 of (English) Wikipedia having a minimum frequency of 200.
 
-See the [WordNinja](https://github.com/keredson/wordninja) package using one of the
+See the [WordNinja](https://github.com/keredson/wordninja) package which uses one of the
 objective functions considered here.
 
 ## Example
