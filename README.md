@@ -1,20 +1,25 @@
-# stringsegmentationbydynamicprogramming
-### _string segmentation by dynamic programming_
+# splittingstringsusingdynamicprogramming 
+### _splitting strings using dynamic programming_
 
-This didactic implementation shows how to segment a string this using dynamic programming. 
-Two different (linear) objective functions are demonstrated, one probabilistic and one based on
-Zipf's frequency-rank distribution. The underlying language model is the frequency distribution
-of (English) Wikipedia having a minimum frequency of 200.
+This is a demonstration of dynamic programming applied to optimally splitting strings into words. 
+Two different (linear) objective functions are used, one probabilistic and one based on
+Zipf's frequency-rank distribution. 
+
+The default language model is the frequency distribution of (English) Wikipedia having a 
+minimum frequency of 200. 
+
+Alternatively, the user can supply their own (byte-encoded) JSON file of word-frequency 
+pairs, sorted ascending by frequency.
 
 See the [WordNinja](https://github.com/keredson/wordninja) package which uses one of the
 objective functions considered here.
 
 ## Example
 ```python
-seg = Segment(cost_type="prob")  # default
+seg = Segment(cost_type="prob", word_freq_file=None)  # defaults are shown
 seg("mylifeboatisfullofeels")
 
-# returns (['my', 'lifeboat', 'is', 'full', 'of', 'eels'],1.570e-76)
+# returns (['my', 'lifeboat', 'is', 'full', 'of', 'eels'],174.55)
 ```
 # License
 MIT License Copyright &copy; 2021 Chris Skiscim
