@@ -52,7 +52,7 @@ def neg_log_prob(wordfreq):
 class Segment:
     def __init__(self, word_freq_file=None, cost_type="prob"):
         if word_freq_file is None:
-            word_freq_file = "enwiki_vocab_min200_freq.json.gz"
+            word_freq_file = "segs/enwiki_vocab_min200_freq.json.gz"
 
         word_freq = read_wordfreq(word_freq_file)
         self.max_len = max(len(w) for w in word_freq.keys())
@@ -112,4 +112,4 @@ if __name__ == "__main__":
     seg = Segment(cost_type=cost_t)
     for txt in texts:
         s, c = seg(txt)
-        print("{}: {} = {} obj = {:3.2f}".format(cost_t, txt, " ".join(s), c))
+        print("{}: {} = {}, obj = {:3.2f}".format(cost_t, txt, " ".join(s), c))

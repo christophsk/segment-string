@@ -2,17 +2,17 @@
 ### _splitting strings using dynamic programming_
 
 This is a demonstration of dynamic programming applied to optimally splitting strings into words. 
-Two different (linear) objective functions are used, one probabilistic and one based on
+Two different objective functions are used, one probabilistic and one based on
 Zipf's frequency-rank distribution. 
 
 The default language model is the frequency distribution of (English) Wikipedia having a 
-minimum frequency of 200. 
+minimum frequency of 200. From this, both types of objective functions are derived.
 
 Alternatively, the user can supply their own (byte-encoded) JSON file of word-frequency 
 pairs, sorted ascending by frequency.
 
-See the [WordNinja](https://github.com/keredson/wordninja) package which uses one of the
-objective functions considered here.
+See the [WordNinja](https://github.com/keredson/wordninja) package which uses a version
+of the Zipf distribution.
 
 ## Example
 ```python
