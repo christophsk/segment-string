@@ -1,5 +1,5 @@
 # MIT License
-# Copyright (c) 2021 Chris Skiscim
+# Copyright (seg_cost) 2021 Chris Skiscim
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -20,6 +20,8 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import gzip
+import os
+
 import math
 
 try:
@@ -29,30 +31,27 @@ except ImportError:
 
 
 def read_wordfreq(filename):
-    """
-    Gzipped word - frequency file, one entry per line <word><space><frequency>,
-    sorted descending by frequency.
-    """
     with gzip.open(filename) as fin:
         wordfreq = json.loads(fin.read().decode("utf-8"))
     return wordfreq
 
 
 def zipf(wordlist):
-    word_cost = {w: math.log((r + 1) * 2.0) for r, w in enumerate(wordlist)}
-    return word_cost
+    return {w: math.log((r + 1) * 2.0) for r, w in enumerate(wordlist)}
 
 
 def neg_log_prob(wordfreq):
     log_denom = math.log(sum(wordfreq.values()))
-    wordp = {w: log_denom - math.log(wordfreq[w]) for w in wordfreq}
-    return wordp
+    return {w: log_denom - math.log(wordfreq[w]) for w in wordfreq}
 
 
 class Segment:
     def __init__(self, word_freq_file=None, cost_type="prob"):
         if word_freq_file is None:
-            word_freq_file = "segs/enwiki_vocab_min200_freq.json.gz"
+            here = os.path.dirname(os.path.abspath(__file__))
+            word_freq_file = os.path.join(
+                here, "enwiki_vocab_min200_freq.json.gz"
+            )
 
         word_freq = read_wordfreq(word_freq_file)
         self.max_len = max(len(w) for w in word_freq.keys())
@@ -72,12 +71,12 @@ class Segment:
             (
                 cand_cost
                 + self.cost.get(
-                    text[idx - j - 1 : idx].lower(), self.max_cost
+                    text[idx - j - 1: idx].lower(), self.max_cost
                 ),
                 j + 1,
             )
             for j, cand_cost in enumerate(
-                reversed(costs[max(0, idx - self.max_len) : idx])
+                reversed(costs[max(0, idx - self.max_len): idx])
             )
         )
 
@@ -86,9 +85,9 @@ class Segment:
         costs = [0.0]
         costs_ptr = [(0.0, 0)]
         for idx in range(1, len(text) + 1):
-            min_cost, min_idx = self._min_cost_ptr(idx, text, costs)
-            costs_ptr.append((min_cost, min_idx))
-            costs.append(min_cost)
+            min_cost_ptr = self._min_cost_ptr(idx, text, costs)
+            costs_ptr.append(min_cost_ptr)
+            costs.append(min_cost_ptr[0])
 
         # backtrack
         words = list()
@@ -96,20 +95,7 @@ class Segment:
         ptr = len(costs_ptr) - 1
         while ptr > 0:
             mincost, min_idx = costs_ptr[ptr]
-            words.append(text[ptr - min_idx : ptr])
+            words.append(text[ptr - min_idx: ptr])
             seg_cost += mincost
             ptr -= min_idx
         return list(reversed(words)), seg_cost
-
-
-if __name__ == "__main__":
-    texts = [
-        "iamnotanumberiamaperson",
-        "splittingstringsusingdynamicprogramming",
-        "mylifeboatisfullofeels",
-    ]
-    cost_t = "prob"
-    seg = Segment(cost_type=cost_t)
-    for txt in texts:
-        s, c = seg(txt)
-        print("{}: {} = {}, obj = {:3.2f}".format(cost_t, txt, " ".join(s), c))

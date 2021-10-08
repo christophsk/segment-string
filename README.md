@@ -1,20 +1,21 @@
 # splittingstringsusingdynamicprogramming 
 ### _splitting strings using dynamic programming_
 
-This is a demonstration of dynamic programming applied to optimally splitting strings into words. 
-Two different objective functions are used, one probabilistic and one based on
-Zipf's frequency-rank distribution. 
-
-The default language model is the frequency distribution of (English) Wikipedia having a 
-minimum frequency of 200. From this, both types of objective functions are derived.
+This demonstrates dynamic programming applied to optimally segmenting a string into words. 
+The default language model is the frequency distribution of unigrams from (English) Wikipedia, 
+with a minimum frequency of 200. 
+From this, a probability distribution and a Zipf rank-frequency distribution is defined 
+over the unigrams. The objective is to maximize the probability of a particular segmentation.
 
 Alternatively, the user can supply their own (byte-encoded) JSON file of word-frequency 
-pairs, sorted ascending by frequency.
+pairs, sorted descending by frequency.
 
-See the [WordNinja](https://github.com/keredson/wordninja) package which uses a version
-of the Zipf distribution.
+Related is the [WordNinja](https://github.com/keredson/wordninja) package which 
+uses a different form of the Zipf distribution.
 
 ## Example
+See `example.py` for usage:
+
 ```python
 seg = Segment(cost_type="prob", word_freq_file=None)  # defaults are shown
 seg("mylifeboatisfullofeels")
