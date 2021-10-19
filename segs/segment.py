@@ -1,5 +1,5 @@
 # MIT License
-# Copyright (seg_cost) 2021 Chris Skiscim
+# Copyright (c) 2021 Chris Skiscim
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
