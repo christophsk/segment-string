@@ -1,4 +1,4 @@
-from segs.segment import Segment
+from seg_str.segment import Segment
 
 texts = [
         "iamnotanumberiamaperson",
@@ -6,7 +6,7 @@ texts = [
         "mylifeboatisfullofeels",
         "asgregorsamsaawokeonemorningfromuneasydreamshefoundhimselftransformedinhisbedintoagiganticinsect",
         "wheninthecourseofhumaneventsitbecomesnecessary",
-        "xabaay",
+        "theman",
     ]
 
 for cost_t in ("prob", "zipf"):

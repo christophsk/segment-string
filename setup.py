@@ -5,7 +5,7 @@ from os import path
 from setuptools import setup, find_packages
 
 __version__ = None
-exec(open("segment-string/version.py").read())
+exec(open("seg_str/version.py").read())
 
 here = path.abspath(path.dirname(__file__))
 with open(path.join(here, "README.md"), encoding="utf-8") as f:
@@ -13,11 +13,12 @@ with open(path.join(here, "README.md"), encoding="utf-8") as f:
     LONG_DESCRIPTION_TYPE = "text/markdown"
 
 setup(
-    name="fast-rake",
+    name="segment-string",
     version=__version__,
     python_requires=">=3.6",
     packages=find_packages(exclude=["test*"]),
-    include_package_data=False,
+    include_package_data=True,
+    package_data={"segs": ["enwiki_vocab_min200_freq.json.gz"]},
     zip_safe=False,
     url="",
     download_url="",
