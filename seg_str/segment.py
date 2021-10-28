@@ -37,7 +37,7 @@ def read_wordfreq(filename):
 
 
 def zipf(wordlist):
-    return {w: math.log((r + 1) * 2.0) for r, w in enumerate(wordlist)}
+    return {w: math.log10((r + 1) * 2.5) for r, w in enumerate(wordlist)}
 
 
 def neg_log_prob(wordfreq):
@@ -71,12 +71,12 @@ class Segment:
             (
                 cand_cost
                 + self.cost.get(
-                    text[idx - j - 1: idx].lower(), self.max_cost
+                    text[idx - j - 1 : idx].lower(), self.max_cost
                 ),
                 j + 1,
             )
             for j, cand_cost in enumerate(
-                reversed(costs[max(0, idx - self.max_len): idx])
+                reversed(costs[max(0, idx - self.max_len) : idx])
             )
         )
 
@@ -95,7 +95,7 @@ class Segment:
         ptr = len(costs_ptr) - 1
         while ptr > 0:
             mincost, min_idx = costs_ptr[ptr]
-            words.append(text[ptr - min_idx: ptr])
+            words.append(text[ptr - min_idx : ptr])
             seg_cost += mincost
             ptr -= min_idx
         return list(reversed(words)), seg_cost

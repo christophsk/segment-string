@@ -10,8 +10,7 @@ over the unigrams. The objective is to maximize the probability of a particular 
 Alternatively, the user can supply their own (byte-encoded) JSON file of word-frequency 
 pairs, sorted descending by frequency.
 
-Related is the [WordNinja](https://github.com/keredson/wordninja) package which 
-uses a different form of the Zipf distribution.
+Essentially, this is the unigram Viterbi method outlined by [Peter Novig](http://norvig.com/ngrams/ch14.pdf).
 
 ## Example
 See `example.py` for usage:

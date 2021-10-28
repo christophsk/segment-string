@@ -18,7 +18,7 @@ setup(
     python_requires=">=3.6",
     packages=find_packages(exclude=["test*"]),
     include_package_data=True,
-    package_data={"segs": ["enwiki_vocab_min200_freq.json.gz"]},
+    package_data={"seg_str": ["enwiki_vocab_min200_freq.json.gz"]},
     zip_safe=False,
     url="",
     download_url="",
