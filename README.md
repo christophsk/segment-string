@@ -5,7 +5,7 @@ This demonstrates dynamic programming applied to optimally segmenting a contiguo
 The default language model is the ranked frequency distribution of unigrams from (English) Wikipedia, 
 each with a frequency >= 200.
 
-From this, a probability distribution and a Zipf rank-frequency distribution is defined 
+From this, a probability distribution or a Zipf rank-frequency distribution is defined 
 over the ranked unigrams. The objective is to maximize the probability / Zipf of a 
 particular segmentation.
 

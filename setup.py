@@ -28,12 +28,12 @@ setup(
     description="segment-string: Demo of dynamic programming applied to string segmentation",
     long_description=LONG_DESCRIPTION,
     long_description_content_type=LONG_DESCRIPTION_TYPE,
-    keywords="string-split, string-segment, dynamic-programming",
+    keywords="string-split, string-segment, dynamic-programming, viterbi",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Topic :: Natural Language :: English",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
     ],
 )
