@@ -36,7 +36,7 @@ class Segment:
         """
         This uses a dynamic programming method to optimally insert spaces into a
         string of letters, e.g., "theman" -> "the man". The objective is to
-        maximize either the negative log likelihood or the negative log Zipf
+        maximize either the negative log likelihood or the log Zipf
         rank-frequency.
 
         The default language model is the frequency distribution of words from

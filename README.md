@@ -12,8 +12,8 @@ particular segmentation.
 Essentially, this is the Viterbi method applied to a unigram language model. For an interesting treatment,
 see the article by [Peter Novig](http://norvig.com/ngrams/ch14.pdf).
 
-The user can also supply their own (UTF-8 encoded) JSON file of word-frequency
-pairs, sorted descending by frequency, gzipped.
+The user can also supply their own gzip'd (UTF-8 encoded) JSON file of word-frequency
+pairs, sorted descending by frequency.
 
 ## Example
 See `example.py` for example usage:
