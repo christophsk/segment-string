@@ -1,28 +1,33 @@
 # splittingstringsusingdynamicprogramming 
 ### _splitting strings using dynamic programming_
 
-This demonstrates dynamic programming applied to optimally segmenting a string into words. 
-The default language model is the frequency distribution of unigrams from (English) Wikipedia, 
-with a minimum frequency of 200. 
+This demonstrates dynamic programming applied to optimally segmenting a contiguous string into words. 
+The default language model is the ranked frequency distribution of unigrams from (English) Wikipedia, 
+each with a frequency >= 200.
+
 From this, a probability distribution and a Zipf rank-frequency distribution is defined 
-over the unigrams. The objective is to maximize the probability of a particular segmentation.
+over the ranked unigrams. The objective is to maximize the probability / Zipf of a 
+particular segmentation.
 
-Alternatively, the user can supply their own (byte-encoded) JSON file of word-frequency 
-pairs, sorted descending by frequency.
+Essentially, this is the Viterbi method applied to a unigram language model. For an interesting treatment,
+see the article by [Peter Novig](http://norvig.com/ngrams/ch14.pdf).
 
-Essentially, this is the unigram Viterbi method outlined by [Peter Novig](http://norvig.com/ngrams/ch14.pdf).
+The user can also supply their own (UTF-8 encoded) JSON file of word-frequency
+pairs, sorted descending by frequency, gzipped.
 
 ## Example
-See `example.py` for usage:
+See `example.py` for example usage:
 
 ```python
+from seg_str.segment import Segment
+
 seg = Segment(cost_type="prob", word_freq_file=None)  # defaults are shown
 seg("mylifeboatisfullofeels")
 
-# returns (['my', 'lifeboat', 'is', 'full', 'of', 'eels'],174.55)
+# returns ['my', 'lifeboat', 'is', 'full', 'of', 'eels'], 51.29
 ```
 # License
-MIT License Copyright &copy; 2021 Chris Skiscim
+MIT License, copyright &copy; 2021 Chris Skiscim
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

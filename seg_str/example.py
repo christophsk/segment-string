@@ -5,8 +5,9 @@ texts = [
     "theman",
     "speedofart",
     "insufficientnumbers",
+    "Mylifeboatisfullofeels",
     "iamnotanumberiamaperson",
-    "asgregorsamsaawokeonemorningfromuneasydreamshefoundhimselftransformedinhisbedintoagiganticinsect",
+    "Asgregorsamsaawokeonemorningfromuneasydreamshefoundhimselftransformedinhisbedintoagiganticinsect",
     "faroutintheunchartedbackwatersoftheunfashionableendofthewesternspiralarmofthegalaxyliesasmallunregardedyellowsun",
 ]
 
